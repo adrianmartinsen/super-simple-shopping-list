@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Super Simple Shopping List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="app.min.css">
+    <style>
+	.app-topbar {
+		background-color: #1177BB;
+	}
+	#list-done {
+		color: gray;
+		font-style: italic;
+		text-decoration: line-through;
+	}
+    </style>
+  </head>
+
+  <body>
+    <div class="app-page" data-page="home">
+      <div class="app-topbar">
+        <div class="app-title">Super Simple Shopping List</div>
+      </div>
+      <div class="app-content">
+		<input class="app-input" placeholder="Add item to list">
+        <div class="app-section">
+		<ul id="list" class="app-list">
+			<li>Item 1</li>
+			<li>Item 2</li>
+ 			<li>Item 3</li>
+		</ul>
+	</div>
+	<div class="app-section">
+		<ul id="list-done" class="app-list">
+			<li>checkedItem 1</li>
+			<li>checkedItem 2</li>
+			<li>checkedItem 3</li>
+		</ul>
+	</div>
+	<div class="app-button">Done Shopping!</div>
+     </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="zepto.js"></script>
+    <script src="app.min.js"></script>
+    <script>
+App.controller('home', function (page) {
+	$(page).find("input").keypress(function(event){
+		if(event.which === 13 && $(this).val() !== ""){
+			var listItem = $(this).val();
+			$(this).val("");
+			$("#list").append("<li>" + listItem + "</li>");
+		}
+	});
+
+	$(page).find("#list").on("click", "li", function(event){
+		var checkItem = $(this).html();
+		$("#list-done").append("<li>" + checkItem + "</li>");
+		$(this).remove();
+	});
+
+	$(page).find(".app-button").on("click", function(event){
+		$("#list-done").children().remove();
+	});
+	window.onload = function(){
+		$(page).find(".app-section").each(function(){
+			console.log($(this).children().html());
+			if($(this).children().length == 0){
+				$(this).hide();
+			} else {
+				$(this).show();
+			}
+		});
+	}
+});
+      try {
+        App.restore();
+      } catch (err) {
+        App.load('home');
+      }
+    </script>
+  </body>
+</html>
