@@ -78,12 +78,13 @@ App.controller('home', function (page) {
 	$(window).on("load", function(){
 		checkIfListEmpty();		
 	});
-	function checkIfListEmpty() {$(page).find(".app-section").each(function(){
-		if($(this).find("li").length == 0){
-			$(this).hide();
-		} else {
-			$(this).show();
-		}
+	function checkIfListEmpty() {
+		$(page).find(".app-section").each(function(){
+			if($(this).find("li").length == 0){
+				$(this).hide();
+			} else {
+				$(this).show();
+			}
 	});}
 });
       try {
