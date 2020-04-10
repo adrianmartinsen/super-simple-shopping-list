@@ -13,6 +13,12 @@
 		font-style: italic;
 		text-decoration: line-through;
 	}
+	#reset {
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+		display: none;
+	}
     </style>
   </head>
 
@@ -25,19 +31,13 @@
 		<input class="app-input" placeholder="Add item to list">
         <div class="app-section">
 		<ul id="list" class="app-list">
-			<li>Item 1</li>
-			<li>Item 2</li>
- 			<li>Item 3</li>
 		</ul>
 	</div>
 	<div class="app-section">
 		<ul id="list-done" class="app-list">
-			<li>checkedItem 1</li>
-			<li>checkedItem 2</li>
-			<li>checkedItem 3</li>
 		</ul>
 	</div>
-	<div class="app-button">Done Shopping!</div>
+	<div id="reset" class="app-button">Done Shopping!</div>
      </div>
     </div>
 
@@ -56,6 +56,7 @@ App.controller('home', function (page) {
 			var listItem = $(this).val();
 			$(this).val("");
 			$("#list").append("<li>" + listItem + "</li>");
+			checkIfListEmpty();
 		}
 	});
 
@@ -63,21 +64,27 @@ App.controller('home', function (page) {
 		var checkItem = $(this).html();
 		$("#list-done").append("<li>" + checkItem + "</li>");
 		$(this).remove();
+		checkIfListEmpty();
+		if($("#list").children().length == 0){
+			$("#reset").show();
+		}
 	});
 
 	$(page).find(".app-button").on("click", function(event){
 		$("#list-done").children().remove();
+		checkIfListEmpty();
+		$("#reset").hide();
 	});
-	window.onload = function(){
-		$(page).find(".app-section").each(function(){
-			console.log($(this).children().html());
-			if($(this).children().length == 0){
-				$(this).hide();
-			} else {
-				$(this).show();
-			}
-		});
-	}
+	$(window).on("load", function(){
+		checkIfListEmpty();		
+	});
+	function checkIfListEmpty() {$(page).find(".app-section").each(function(){
+		if($(this).find("li").length == 0){
+			$(this).hide();
+		} else {
+			$(this).show();
+		}
+	});}
 });
       try {
         App.restore();
