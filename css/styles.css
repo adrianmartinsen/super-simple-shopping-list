@@ -1,0 +1,21 @@
+main {
+    height: 100%;
+}
+
+#list-done {
+    color: gray;
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+#reset {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#btn-clear {
+    position: fixed;
+    bottom: 5px;
+    display: none;
+}

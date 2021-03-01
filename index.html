@@ -1,97 +1,40 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
     <title>Super Simple Shopping List</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-    <link rel="stylesheet" href="app.min.css">
-    <style>
-	.app-topbar {
-		background-color: #1177BB;
-	}
-	#list-done {
-		color: gray;
-		font-style: italic;
-		text-decoration: line-through;
-	}
-	#reset {
-		position: fixed;
-		bottom: 0px;
-		width: 100%;
-		display: none;
-	}
-    </style>
-  </head>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Super<strong>Simple</strong>ShoppingList</span>
+        </div>
+    </nav>
+    <input id="input" class="form-control" type="text" placeholder="Add item to list">
+    <main class="container-fluid bg-light">
+        <div class="container pt-1">
+            <ul id="list" class="list-group list-group-flush pt-1">
+                <!-- <li class="list-group-item">An item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">And a fourth item</li> -->
+            </ul>
+        </div>
 
-  <body>
-    <div class="app-page" data-page="home">
-      <div class="app-topbar">
-        <div class="app-title">Super Simple Shopping List</div>
-      </div>
-      <div class="app-content">
-		<input class="app-input" placeholder="Add item to list">
-        <div class="app-section">
-		<ul id="list" class="app-list">
-		</ul>
-	</div>
-	<div class="app-section">
-		<ul id="list-done" class="app-list">
-		</ul>
-	</div>
-	<div id="reset" class="app-button">Done Shopping!</div>
-     </div>
-    </div>
+        <div class="container pt-1">
+            <ul id="list-done" class="list-group list-group-flush pt-1">
+                <!-- <li class="list-group-item">An item marked done</li>
+                <li class="list-group-item">Another item marked done</li> -->
+            </ul>
+        </div>
+        <div id="reset">
+            <button id="btn-clear" type="button" class="btn btn-outline-primary">Done Shopping</button>
+        </div>        
+    </main>
 
-
-
-
-
-
-
-    <script src="zepto.js"></script>
-    <script src="app.min.js"></script>
-    <script>
-App.controller('home', function (page) {
-	$(page).find("input").keypress(function(event){
-		if(event.which === 13 && $(this).val() !== ""){
-			var listItem = $(this).val();
-			$(this).val("");
-			$("#list").append("<li>" + listItem + "</li>");
-			checkIfListEmpty();
-		}
-	});
-
-	$(page).find("#list").on("click", "li", function(event){
-		var checkItem = $(this).html();
-		$("#list-done").append("<li>" + checkItem + "</li>");
-		$(this).remove();
-		checkIfListEmpty();
-		if($("#list").children().length == 0){
-			$("#reset").show();
-		}
-	});
-
-	$(page).find(".app-button").on("click", function(event){
-		$("#list-done").children().remove();
-		checkIfListEmpty();
-		$("#reset").hide();
-	});
-	$(window).on("load", function(){
-		checkIfListEmpty();		
-	});
-	function checkIfListEmpty() {
-		$(page).find(".app-section").each(function(){
-			if($(this).find("li").length == 0){
-				$(this).hide();
-			} else {
-				$(this).show();
-			}
-	});}
-});
-      try {
-        App.restore();
-      } catch (err) {
-        App.load('home');
-      }
-    </script>
-  </body>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
 </html>
