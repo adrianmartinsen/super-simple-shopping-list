@@ -3,6 +3,7 @@ const list = document.querySelector('#list')
 const done = document.querySelector('#list-done')
 const reset = document.querySelector('#btn-clear')
 
+// check for browser compatability with service worker
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
     .then(reg => console.log('service worker registered', reg))
