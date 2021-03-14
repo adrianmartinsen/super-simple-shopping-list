@@ -1,0 +1,26 @@
+{
+    "name": "Super Simple Shopping List",
+    "short_name": "SSSL",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#0D6EFD",
+    "theme_color": "#CFE2FF",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/img/icons/icon-96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "/img/icons/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/img/icons/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+  }
