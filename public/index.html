@@ -6,12 +6,6 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/styles.css">
     <title>Super Simple Shopping List</title>
-    <!-- pwa support -->
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#6EA8FE">
-    <!-- ios support -->
-    <link rel="apple-touch-icon" href="/img/icons/icon-96.png">
-    <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
 </head>
 <body>
     <nav class="navbar navbar-dark bg-primary">
@@ -23,22 +17,25 @@
     <main class="container-fluid bg-light">
         <div class="container pt-1">
             <ul id="list" class="list-group list-group-flush pt-1">
-                <!-- <li class="list-group-item">An item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">And a fourth item</li> -->
             </ul>
         </div>
 
         <div class="container pt-1">
             <ul id="list-done" class="list-group list-group-flush pt-1">
-                <!-- <li class="list-group-item">An item marked done</li>
-                <li class="list-group-item">Another item marked done</li> -->
             </ul>
         </div>
         <div id="reset">
             <button id="btn-clear" type="button" class="btn btn-outline-primary">Done Shopping</button>
-        </div>        
+        </div>
     </main>
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">
+            Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">
+            Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+            </span>
+        </div>
+    </footer>
     
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>

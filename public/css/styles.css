@@ -1,5 +1,11 @@
 main {
-    height: 100%;
+    height: 90%;
+    overflow: auto;
+}
+
+footer {
+    text-align: center;
+    font-size: small;
 }
 
 #list-done {
