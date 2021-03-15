@@ -10,56 +10,57 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.log('service worker not registered', err))
 }
 
-/*
+// get list on page reload
+window.onload = function() {
+    for (let i = 0; i < localStorage.length; i++) {
+        let item = localStorage.key(i)
+        newTextNode(item)
+    }
+}
+
+// add item to list from input
 input.addEventListener("keypress", function(event) {
     if(event.which === 13 && this.value) {
         let item = this.value
         input.value = ""
-        localStorage.setItem('list', item)
-    }
-})
-*/
-
-input.addEventListener("keypress", function(event) {
-    // Only trigger if return i pressed and inputfield not empty
-    if(event.which === 13 && this.value) {
-        // Save input to variable and clear inputfield
-        let listItem = this.value
-        input.value = ""
-        // Create element with styles
-        const newListItem = document.createElement("li")
-        newListItem.className = 'list-group-item'
-        // Create textnode to insert value
-        const itemContent = document.createTextNode(listItem)
-        // Add the input value inside the new li-element
-        newListItem.appendChild(itemContent)
-        // Attach the new lisitem with content to list
-        list.appendChild(newListItem)
-        // Check if list is empty 
-        checkIfListEmpty()
+        localStorage.setItem(item, item)
+        newTextNode(item)
     }
 })
 
+// move item from list to done when clicked
 list.addEventListener("click", function(event) {
     const target = event.target;
     if (target.matches("li")) {
         let checkItem = target
+        localStorage.removeItem(target.innerHTML)
         target.remove()
         done.appendChild(checkItem)
         checkIfListEmpty()
     }
 }, true)
 
+// reset done once all items in list are completed
 reset.addEventListener("click", function() {
     let child = done.querySelectorAll("li")
     child.forEach(item => item.remove())
     reset.style.display = "none"
 })
 
+// hide reset button until list is empty
 function checkIfListEmpty() {
     if (list.childElementCount === 0) {
         reset.style.display = "inline"
     } else {
         reset.style.display = "none"
     }
+}
+
+// create list item when added from input or on page reload
+function newTextNode(content) {
+    const newListItem = document.createElement("li")
+    newListItem.className = 'list-group-item'
+    const itemContent = document.createTextNode(content)
+    newListItem.appendChild(itemContent)
+    list.appendChild(newListItem)
 }
